@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration scan="true" scanPeriod="30 seconds">
+	
+<!-- 	
+	<util:properties id="log" location="classpath:properties/logback.properties" /> 
+-->
+
+	<property name="LOGBACK_PATTERN_CONSOLE" value="%d{HH:mm:ss.SSS} [%-5level] [%logger{30}] :: %msg%n"/>
+	<property name="LOGBACK_PATTERN_FILE" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%thread] [%logger] :: %msg%n"/>
+	<property name="LOGBACK_LOCATION" value="#{log['LOGBACK_LOCATION']}"/>
+
+
+	<!-- 콘솔 로그 -->
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>${LOGBACK_PATTERN_CONSOLE}</Pattern>
+		</layout>
+	</appender>
+	
+	
+	<!-- 파일 로그 -->
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOGBACK_LOCATION}/test.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>admin-%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+				<maxHistory>30</maxHistory>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>${LOGBACK_PATTERN_FILE}</pattern>
+		</encoder>
+	</appender>
+	
+	
+	<!-- logger -->
+	<logger name="org.springframework" level="INFO"/>
+	<logger name="ex.ecommerce.admin" level="INFO"/>
+
+	
+	<!-- root logger -->
+	<root level="INFO">
+		<appender-ref ref="CONSOLE"/>
+		<appender-ref ref="FILE"/>
+	</root>
+	
+	
+</configuration>
