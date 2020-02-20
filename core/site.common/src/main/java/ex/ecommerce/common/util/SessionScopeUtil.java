@@ -1,4 +1,4 @@
-package ex.commerce.common.util;
+package ex.ecommerce.common.util;
 
 import javax.servlet.http.HttpServletRequest;
 
