@@ -1,4 +1,4 @@
-package ex.ecommerce.admin;
+package ex.ecommerce.admin.util;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,7 +9,7 @@ import ex.ecommerce.common.util.LoggerUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:**/*.xml")
-public class LoggerTest {
+public class LoggerUtilTest {
 
 	@Test
 	public void test() {
