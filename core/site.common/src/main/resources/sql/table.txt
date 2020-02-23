@@ -1,0 +1,160 @@
+-- # 1.비회원
+CREATE TABLE member_temp (
+    id                        VARCHAR2(100 BYTE)       PRIMARY KEY,
+    pwd                       VARCHAR2(100 BYTE)       NOT NULL,
+    email                     VARCHAR2(100 BYTE)       NOT NULL,
+    ad_accept_yn              BOOLEAN                  NOT NULL,  
+    reg_date                  VARCHAR2(50 BYTE)        NOT NULL,  
+    uuid                      VARCHAR2(100 BYTE)       NOT NULL
+);
+
+
+
+-- # 2.회원
+CREATE TABLE member_user (
+    id                        VARCHAR2(100 BYTE)       PRIMARY KEY,
+    pwd                       VARCHAR2(100 BYTE)       NOT NULL,
+    level                     NUMBER(1)                NOT NULL,
+    client_ip                 VARCHAR2(100 BYTE)       ,
+    
+    login_date                VARCHAR2(50 BYTE)        ,
+    join_date                 VARCHAR2(50 BYTE)        NOT NULL,
+
+    update_admin              VARCHAR2(100 BYTE)       ,
+    update_date               VARCHAR2(50 BYTE)        ,
+    update_msg                VARCHAR2(300 BYTE)       ,
+
+    delete_date               VARCHAR2(50 BYTE)        ,
+    state                     BOOLEAN(1)               NOT NULL,
+);
+
+-- # 3.회원 - 프로필 
+CREATE TABLE user_profile (
+    id                        VARCHAR2(100 BYTE)       REFERENCES member_user(id) ON DELETE CASCADE ENABLE,
+    name                      VARCHAR2(100 BYTE)       ,
+    gender                    NUMBER(1)                NOT NULL,
+    birthday                  VARCHAR2(50 BYTE)        ,
+    email                     VARCHAR2(100 BYTE)       ,
+    second_email              VARCHAR2(100 BYTE)       ,
+    img_file_name             VARCHAR2(150 BYTE)       ,
+    img_save_name             VARCHAR2(150 BYTE)       ,
+    ad_accept_yn              BOOLEAN                  NOT NULL, 
+);
+
+-- # 4.회원 - 주소록 
+CREATE TABLE user_address (
+);
+
+
+
+-- # 1.관리자
+CREATE TABLE member_admin (
+    id                        VARCHAR2(100 BYTE)       PRIMARY KEY,
+    pwd                       VARCHAR2(100 BYTE)       NOT NULL,
+    level                     NUMBER(1)                NOT NULL,
+    client_ip                 VARCHAR2(100 BYTE)       ,    
+    login_date                VARCHAR2(50 BYTE)        ,
+
+    reg_admin                 VARCHAR2(100 BYTE)       NOT NULL,
+    reg_date                  VARCHAR2(50 BYTE)        NOT NULL,
+    reg_msg                   VARCHAR2(300 BYTE)       ,
+     
+    update_admin              VARCHAR2(100 BYTE)       ,
+    update_date               VARCHAR2(50 BYTE)        ,
+    update_msg                VARCHAR2(300 BYTE)       ,
+    
+    state                     BOOLEAN                  NOT NULL, 
+);
+
+INSERT INTO member_admin(id,pwd,level,reg_admin,reg_date, state) 
+VALUES('admin','$2a$12$zEsYNiIeGnO0kgL0FHsTveFNU.YsOf7lS3RG44iX7A3rma8W9lGYW',1,'SYSTEM',sysdate, true)
+
+
+
+-- # 게시판
+CREATE TABLE board (
+    bno                       NUMBER                   PRIMARY KEY,  
+    kind                      NUMBER(1)                NOT NULL,
+    priority                  NUMBER(1)                NOT NULL,
+    
+    title                     VARCHAR2(300BYTE)        NOT NULL,
+    content                   VARCHAR2(3000BYTE)       NOT NULL,
+    
+    hit                       NUMBER(10)               ,
+
+    write_id                  VARCHAR2(100BYTE)        ,    
+    write_admin               VARCHAR2(100BYTE)        ,
+    write_date                VARCHAR2(50BYTE)         ,
+    
+    update_admin              VARCHAR2(100BYTE)        ,
+    update_date               VARCHAR2(50BYTE)         ,
+    update_msg                VARCHAR2(300 BYTE)       ,
+    
+    status                    BOOLEAN                  NOT NULL, 
+);
+
+---- 게시판 시퀀스
+CREATE SEQUENCE seq_board_bno
+start with 1
+increment by 1
+
+
+
+---- 게시판 - 파일 
+CREATE TABLE board_file (
+    fno                       NUMBER                   PRIMARY KEY, 
+    fk_bno                    NUMBER                   REFERENCES board(bno),
+    
+    file_name                 VARCHAR2(300 BYTE)       ,
+    save_file_name            VARCHAR2(300 BYTE)       ,
+    thumbnail_name            VARCHAR2(300 BYTE)       ,
+     
+    file_size                 VARCHAR2(150 BYTE)       ,
+    directory                 VARCHAR2(150 BYTE)       ,
+    
+    update_admin              VARCHAR2(100BYTE)        ,
+    update_date               VARCHAR2(50BYTE)         ,
+    update_msg                VARCHAR2(300 BYTE)       ,
+    
+    status                    BOOLEAN                  NOT NULL, 
+);
+
+---- 파일 시퀀스
+CREATE SEQUENCE seq_board_file_fno
+start with 1
+increment by 1
+
+---- 파일 - 게시판 외래키
+ALTER TABLE board_file ADD CONSTRAINT fk_board FOREIGN KEY (fk_bno) REFERENCES board (bno);
+
+
+
+
+---- 게시판 - 댓글
+CREATE TABLE board_comment(
+    cno                       NUMBER                   PRIMARY KEY,
+    fk_bno                    NUMBER                   REFERENCES board(bno),
+    content                   VARCHAR2(1000BYTE)       ,
+    all_star                  NUMBER(5)                ,
+    all_block                 NUMBER(5)                ,
+
+    write_user_id             VARCHAR2(100BYTE)        ,    
+    write_admin               VARCHAR2(100BYTE)        ,
+    write_date                VARCHAR2(50BYTE)         ,
+    
+    update_admin              VARCHAR2(100BYTE)        ,
+    update_date               VARCHAR2(50BYTE)         ,
+    update_msg                VARCHAR2(300 BYTE)       ,
+    
+    secret                    BOOLEAN                  ,
+    block                     BOOLEAN                  NOT NULL,     
+    status                    BOOLEAN                  NOT NULL, 
+);
+
+---- 댓글 시퀀스
+CREATE SEQUENCE seq_board_comment_cno
+start with 1
+increment by 1
+
+---- 댓글-게시판 외래키
+ALTER TABLE board_comment ADD CONSTRAINT fk_board FOREIGN KEY (fk_bno) REFERENCES board (bno);
