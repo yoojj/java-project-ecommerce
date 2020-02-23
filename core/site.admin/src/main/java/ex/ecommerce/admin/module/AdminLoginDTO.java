@@ -1,4 +1,5 @@
 package ex.ecommerce.admin.module;
+
 import java.io.Serializable;
 
 import javax.validation.constraints.Pattern;
