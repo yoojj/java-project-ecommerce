@@ -1,7 +1,10 @@
 **/properties/
 **/upload/
 
+**/node_modules/
+
 Servers/
+
 
 bin/
 tmp/
