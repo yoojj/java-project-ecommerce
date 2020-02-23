@@ -52,7 +52,9 @@ public class AdminSessionDTO implements Serializable {
 	}
 	
 	public String toSting(){
+		
 		StringBuffer sb = new StringBuffer();
+		
 		sb.append("\n");
 		sb.append(this.getClass().getName()).append("\n");
 		sb.append("아이디      [ " + id + " ] \n");
@@ -60,6 +62,7 @@ public class AdminSessionDTO implements Serializable {
 		sb.append("아이피      [ " + clientIp + " ] \n");
 		sb.append("세션 아이디 [ " + sessionId + " ] \n");
 		sb.append("사용 여부   [ " + state + " ] \n");
+		
 		return sb.toString();
 	}
 	
