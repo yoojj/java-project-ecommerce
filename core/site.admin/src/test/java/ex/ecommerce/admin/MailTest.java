@@ -17,8 +17,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import ex.ecommerce.common.util.LoggerUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:config/root-context.xml", 
-		"classpath:config/app/*.xml"})
+@ContextConfiguration(locations = {"classpath*:config/root-context.xml", 
+		"classpath*:config/app/*.xml"})
 @WebAppConfiguration
 public class MailTest {
 
@@ -48,11 +48,9 @@ public class MailTest {
 			
 			LoggerUtil.log.error(e.getMessage());
 			
-		} finally {
-			
-			mailSender.send(message);
-			
 		}
+			
+		mailSender.send(message);
 		
 	}
 	
