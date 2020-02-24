@@ -16,8 +16,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import ex.ecommerce.admin.web.AdminLoginController;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:config/root-context.xml", 
-		"classpath:config/app/servlet-context.xml"})
+@ContextConfiguration(locations = {"classpath*:config/root-context.xml", 
+		"classpath*:config/app/*.xml"})
 @WebAppConfiguration
 public class ControllerTest {
 
