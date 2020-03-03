@@ -5,7 +5,7 @@ import * as session from './sessionStorage.js';
 const valid = session.getValidJson();
 
 export function validate($data, callback) {
-
+	
 	for(let key in $data){
 		
 		switch(key){
