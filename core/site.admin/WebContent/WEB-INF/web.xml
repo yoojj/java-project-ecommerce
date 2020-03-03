@@ -8,7 +8,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath:config/root-context.xml
+			classpath:config/*.xml
 		</param-value>
 	</context-param>
 
@@ -49,7 +49,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				classpath:config/app/servlet-context.xml
+				classpath:config/app/*.xml
 				classpath:config/app/*/*.xml
 			</param-value>
 		</init-param>
