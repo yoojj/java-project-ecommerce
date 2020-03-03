@@ -1,6 +1,6 @@
 package ex.ecommerce.common.result;
 
-public enum CodeEnum {
+public enum CodeEnum implements CodeEnumInterface {
 
 	SUCCESS(0, "SUCCESS")
 	,ERROR (1, "ERROR");
@@ -13,10 +13,12 @@ public enum CodeEnum {
 		this.description = description;
 	}
 
+	@Override
 	public int getCode() {
 		return code;
 	}
-
+	
+	@Override
 	public String getDescription() {
 		return description;
 	}
