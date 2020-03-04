@@ -17,7 +17,6 @@
 .admin-login-form input[type='password']:focus {background:#e5e5e5;}
 
 .error-msg {margin-top:5px;margin-bottom:10px;font-size:80%;color:red;}
-.error-msg::before {display:inline;content:"! ";}
 
 .admin-login-btn input[type='submit']{display:inline-block;width:100%;padding:10px;
 	border:1px solid #f08080;box-sizing:border-box;transition:0.3s;}
