@@ -6,7 +6,7 @@ function getValidJson() {
 
 	const json = sessionStorage.getItem('valid.json');
 	
-	if(json) {
+	if(json == null) {
 		setValidJson();
 	}
 	
