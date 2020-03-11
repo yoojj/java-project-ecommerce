@@ -27,7 +27,8 @@ public class AdminLoginCheckInterceptor extends HandlerInterceptorAdapter {
 			response.setContentType("text/html;charset=UTF-8");
 			out.println("<script>");
 			out.println("alert('로그인이 필요합니다.');");
-			out.println("window.location.href = window.location.href + 'login';");
+			out.println("window.location.href = window.location.origin + '/' + "
+					+ "window.location.pathname.split('/')[1] + '/login' ");
 			out.println("</script>");
 			out.close();  
 			
