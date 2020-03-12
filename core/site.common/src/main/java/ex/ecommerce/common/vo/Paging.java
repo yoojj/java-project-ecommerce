@@ -57,13 +57,16 @@ public class Paging implements Serializable {
 		this.postMark = (this.page - 1) * postList;
 
 		if( this.page <= this.pageStart ) {
+			
 			this.pageListStart = this.pageStart;
 			this.pageListEnd = this.pageList <= this.pageEnd ? this.pageList : this.pageEnd ;
 		
 		} else {
+			
 			this.pageListStart = this.pageList + (this.page - this.pageList);
 			int temp = this.pageList + this.pageListStart - 1;
 			this.pageListEnd = temp <= this.pageEnd ? temp : this.pageEnd ;
+			
 		}
 	
 	}
