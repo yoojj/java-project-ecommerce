@@ -1,4 +1,4 @@
-package ex.ecommerce.admin.module.board;
+package ex.ecommerce.common.vo;
 
 
 import java.io.Serializable;
@@ -145,7 +145,6 @@ public class Board implements Serializable {
 		sb.append("삭제 여부      [ " + status + " ] \n");
 		
 		return sb.toString();
-
 	}
 	
 }
