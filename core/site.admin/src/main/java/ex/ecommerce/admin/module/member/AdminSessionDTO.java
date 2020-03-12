@@ -1,4 +1,4 @@
-package ex.ecommerce.admin.module;
+package ex.ecommerce.admin.module.member;
 
 import java.io.Serializable;
 
