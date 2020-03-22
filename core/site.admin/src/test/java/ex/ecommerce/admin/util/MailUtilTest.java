@@ -11,8 +11,8 @@ import ex.ecommerce.common.util.MailUtil;
 import ex.ecommerce.common.vo.Mail;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:config/root-context.xml", 
-		"classpath*:config/app/*.xml"})
+@ContextConfiguration(locations = {"classpath*:config/common-context.xml", 
+		"classpath*:config/mail-context.xml"})
 @WebAppConfiguration
 public class MailUtilTest {
 	
@@ -34,7 +34,7 @@ public class MailUtilTest {
 		boolean result = MailUtil.sendMail(mail);
 		
 		System.out.println(result);
-		
+
 	}
 	
 }
