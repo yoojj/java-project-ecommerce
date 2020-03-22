@@ -1,10 +1,8 @@
 package ex.ecommerce.common.util;
 
-import javax.annotation.PostConstruct;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSendException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -14,15 +12,13 @@ import ex.ecommerce.common.vo.Mail;
 
 @Component
 public final class MailUtil {
-
+	
 	private static JavaMailSender mailSender;
 
-	@Autowired
-	private JavaMailSender getMailSender;
-
-	@PostConstruct
-	public void init() {
+	public MailUtil (JavaMailSender getMailSender) {
+		
 		MailUtil.mailSender = getMailSender;
+		
 	}
 
 	public static boolean sendMail(final Mail mail) {
@@ -59,6 +55,10 @@ public final class MailUtil {
 				messageHelper.addAttachment( mail.getMailFileName(), mail.getMailFile() );
 			}
 
+			mailSender.send(message);
+			
+			return true;
+			
 		} catch(MailSendException | MessagingException e) {
 			
 			LoggerUtil.log.error(e.getMessage());
@@ -67,9 +67,6 @@ public final class MailUtil {
 
 		}
 		
-		mailSender.send(message);
-		
-		return true;
 	}
-
+	
 }
