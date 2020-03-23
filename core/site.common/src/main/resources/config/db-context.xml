@@ -13,7 +13,7 @@
 
 
 
-	<util:properties id="database" location="classpath:properties/jdbc.properties" />
+	<util:properties id="database" location="classpath:properties/db.properties" />
 
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 		<constructor-arg>
@@ -33,16 +33,20 @@
 	</bean>
 
 
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"/>
-		<!-- <property name="configLocation" value="classpath*:sql/sql-mapping-config.xml"/>
-		<property name="mapperLocations" value="classpath*:sql/*/*.xml" /> -->
-	</bean>
-
-
 
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="/WEB-INF/classes/sql/sql-mapping-config.xml"/>
+		<property name="mapperLocations">
+			<list>
+				<value>/WEB-INF/classes/sql/admin/*.xml</value>
+				<value>/WEB-INF/classes/sql/site/*.xml</value>
+			</list>
+		</property>
 	</bean>
 
 
