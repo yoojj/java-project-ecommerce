@@ -13,21 +13,22 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import ex.ecommerce.admin.web.AdminLoginController;
+import ex.ecommerce.admin.web.AdminMainController;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:config/root-context.xml", 
-		"classpath*:config/app/*.xml"})
+@ContextConfiguration(locations = {"classpath*:config/common-context.xml", 
+		"classpath*:config/db-context.xml", "classpath*:config/mail-context.xml",
+		"classpath*:config/app/servlet-context.xml"})
 @WebAppConfiguration
 public class ControllerTest {
 
 	@Autowired
-	private AdminLoginController controller;
+	private AdminMainController controller;
 	
 	private MockMvc mockMvc;
 	    
 	@Before
-	public void setup() {
+	public void init() {
 		
 		this.mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
 		
