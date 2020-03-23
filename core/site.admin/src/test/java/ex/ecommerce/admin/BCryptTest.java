@@ -9,7 +9,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:*.xml"})
+@ContextConfiguration(locations = {"classpath*:config/common-context.xml", 
+		"classpath*:config/db-context.xml", "classpath*:config/mail-context.xml"})
 @WebAppConfiguration
 public class BCryptTest {
 
