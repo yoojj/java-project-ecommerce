@@ -17,17 +17,17 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import ex.ecommerce.common.util.LoggerUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:config/root-context.xml", 
-		"classpath*:config/app/*.xml"})
+@ContextConfiguration(locations = {"classpath*:config/common-context.xml", 
+		"classpath*:config/mail-context.xml"})
 @WebAppConfiguration
 public class MailTest {
-
+	
 	@Autowired
 	private JavaMailSender mailSender;
 	
 	@Value("#{mail['mail.username']}")
 	private String mail;
-	
+
 	@Test
 	public void test() {
 	
@@ -51,7 +51,7 @@ public class MailTest {
 		}
 			
 		mailSender.send(message);
-		
+
 	}
 	
 }
