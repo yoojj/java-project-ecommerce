@@ -1,4 +1,4 @@
-package ex.ecommerce.admin.module;
+package ex.ecommerce.admin.module.member;
 
 import java.io.Serializable;
 
@@ -12,7 +12,6 @@ public class AdminLoginDTO implements Serializable {
 	
 	@Size(min=ValidConstant.ID_MIN_NUM, message="아이디는 " + ValidConstant.ID_MIN_NUM + "글자 이상입니다.")
 	@Pattern(regexp=ValidConstant.REG_ENG_NUM, message="아이디는 영문 및 숫자만 입력 가능합니다.")
-	@Pattern(regexp = "^[a-zA-Z0-9]+$", message="아이디는 영문 및 숫자만 입력 가능합니다.")
 	private String adminId;
 	
 	@Size(min=ValidConstant.PWD_MIN_NUM, message="비밀번호는 " + ValidConstant.PWD_MIN_NUM + "글자 이상입니다.")
