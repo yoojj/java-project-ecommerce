@@ -21,8 +21,8 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:config/root-context.xml", 
-		"classpath*:config/app/*.xml"})
+@ContextConfiguration(locations = {"classpath*:config/common-context.xml", 
+		"classpath*:config/db-context.xml", "classpath*:config/mail-context.xml"})
 @WebAppConfiguration
 public class CRUDTest {
 
@@ -71,7 +71,7 @@ public class CRUDTest {
 	
 	}
 	
-	@Test @Ignore
+	@Test 
 	public void insertTest() throws SQLException {
 
 		try {
@@ -145,7 +145,7 @@ public class CRUDTest {
 
 	}
 	
-	@Test
+	@Test @Ignore
 	public void deleteTest() throws SQLException {
 
 		try {
