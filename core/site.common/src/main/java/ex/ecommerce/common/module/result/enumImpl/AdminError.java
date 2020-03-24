@@ -1,6 +1,8 @@
-package ex.ecommerce.common.result.enums;
+package ex.ecommerce.common.module.result.enumImpl;
 
-public enum AdminError {
+import ex.ecommerce.common.module.result.ICodeEnum;
+
+public enum AdminError implements ICodeEnum {
 
 	ID_NULL        (11000, "아이디가 존재하지 않습니다.")
 	,ID_EMPTY      (11001, "아이디가 비었습니다.")
@@ -17,10 +19,12 @@ public enum AdminError {
 		this.description = description;
 	}
 	
+	@Override
 	public int getCode() {
 		return code;
 	}
 
+	@Override
 	public String getDescription() {
 		return description;
 	}
