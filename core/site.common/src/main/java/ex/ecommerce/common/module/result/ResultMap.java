@@ -1,4 +1,4 @@
-package ex.ecommerce.common.result;
+package ex.ecommerce.common.module.result;
 
 import java.util.HashMap;
 

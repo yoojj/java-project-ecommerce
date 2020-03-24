@@ -1,11 +1,11 @@
-package ex.ecommerce.common.result;
+package ex.ecommerce.common.module.result;
 
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class Result implements Serializable {
 
-	private int code;
+	private int code = CodeEnum.ERROR.getCode();
 	private String message;
 	private Object result;
 	private ResultMap resultMap;
@@ -42,4 +42,22 @@ public class Result implements Serializable {
 		this.resultMap = map;
 	}
 	
+	public String toSting(){
+		
+		StringBuffer sb = new StringBuffer();
+		
+		sb.append("\n");
+		sb.append(this.getClass().getName()).append("\n");
+		sb.append("결과 코드  [ " + code + " ] \n");
+		sb.append("메시지     [ " + message + " ] \n");
+	
+		if( result != null ) 		
+			sb.append("결과   [ " + result.toString() + " ] \n");
+		
+		if( resultMap != null ) 
+			sb.append("결과   [ " + resultMap.toString() + " ] \n");
+		
+		return sb.toString();
+	}
+
 }
