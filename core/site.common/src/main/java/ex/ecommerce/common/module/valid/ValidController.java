@@ -1,4 +1,4 @@
-package ex.ecommerce.common.valid;
+package ex.ecommerce.common.module.valid;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +17,6 @@ public class ValidController {
 	@PostMapping(value="valid.json") 
 	@ResponseBody 
 	public Object validJson() throws Exception {
-
 		return VALID_JSON();
 	}
 

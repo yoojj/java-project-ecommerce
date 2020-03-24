@@ -1,4 +1,4 @@
-package ex.ecommerce.common.valid;
+package ex.ecommerce.common.module.valid;
 
 import java.io.Serializable;
 
