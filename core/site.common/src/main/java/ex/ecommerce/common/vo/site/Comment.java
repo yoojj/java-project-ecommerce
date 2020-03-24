@@ -1,4 +1,4 @@
-package ex.ecommerce.common.vo;
+package ex.ecommerce.common.vo.site;
 
 import java.io.Serializable;
 
@@ -10,7 +10,7 @@ public class Comment implements Serializable {
 	private String content;
 	private int allStar;
 	private int allBlock;
-	private String writeUserId;
+	private String writeUser;
 	private String writeAdmin;
 	private String writeDate;
 	private String updateAdmin;
@@ -60,12 +60,12 @@ public class Comment implements Serializable {
 		this.allBlock = allBlock;
 	}
 
-	public String getWriteUserId() {
-		return writeUserId;
+	public String getWriteUser() {
+		return writeUser;
 	}
 
-	public void setWriteUserId(String writeUserId) {
-		this.writeUserId = writeUserId;
+	public void setWriteUser(String writeUser) {
+		this.writeUser = writeUser;
 	}
 
 	public String getWriteAdmin() {
@@ -143,7 +143,7 @@ public class Comment implements Serializable {
 		sb.append("내용           [ " + content + " ] \n");
 		sb.append("스타 개수      [ " + allStar + " ] \n");
 		sb.append("블락 개수      [ " + allBlock + " ] \n");
-		sb.append("등록자(회원)   [ " + writeUserId + " ] \n");
+		sb.append("등록자(회원)   [ " + writeUser + " ] \n");
 		sb.append("등록자(관리자) [ " + writeAdmin + " ] \n");
 		sb.append("등록일         [ " + writeDate + " ] \n");
 		sb.append("수정자         [ " + updateAdmin + " ] \n");
