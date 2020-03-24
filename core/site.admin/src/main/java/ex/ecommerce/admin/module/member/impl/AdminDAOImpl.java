@@ -19,8 +19,8 @@ public class AdminDAOImpl {
 		this.sqlSession = sqlSession;
 	}
 
-	public int insert(AdminRegDTO adminDTO) throws SQLException {
-		return sqlSession.insert("AdminMapper.insert", adminDTO);
+	public int insert(AdminRegDTO adminRegDTO) throws SQLException {
+		return sqlSession.insert("AdminMapper.insert", adminRegDTO);
 	}
 
 	public String selectId(final String id) throws SQLException {
