@@ -1,6 +1,6 @@
-package ex.ecommerce.common.result;
+package ex.ecommerce.common.module.result;
 
-public enum CodeEnum implements CodeEnumInterface {
+public enum CodeEnum implements ICodeEnum {
 
 	SUCCESS(0, "SUCCESS")
 	,ERROR (1, "ERROR");
