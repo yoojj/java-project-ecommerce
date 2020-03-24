@@ -1,4 +1,4 @@
-package ex.ecommerce.common.vo;
+package ex.ecommerce.common.vo.site;
 
 import java.io.Serializable;
 
@@ -11,8 +11,14 @@ public class UserProfile implements Serializable {
 	private String birthday;
 	private String email;
 	private String secondEmail;
+	
+	/** 프로필 이미지 파일명 */
 	private String imgFileName;
+	
+	/** 프로필 이미지 저장된 파일명 */
 	private String imgSaveName;
+	
+	/** 광고 메일 동의 여부 */
 	private boolean adAcceptYN;
 
 	public String getId() {
