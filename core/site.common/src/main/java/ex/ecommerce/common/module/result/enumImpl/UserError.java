@@ -1,4 +1,4 @@
-package ex.ecommerce.common.result.enums;
+package ex.ecommerce.common.module.result.enumImpl;
 
 public enum UserError {
 
