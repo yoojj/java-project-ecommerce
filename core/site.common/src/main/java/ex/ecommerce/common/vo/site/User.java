@@ -1,4 +1,4 @@
-package ex.ecommerce.common.vo;
+package ex.ecommerce.common.vo.site;
 
 import java.io.Serializable;
 
@@ -7,7 +7,7 @@ public class User implements Serializable {
 
 	private String id;
 	private String pwd;
-	private int level;
+	private String level;
 	private String clientIp;
 	private String loginDate;
 	private String joinDate;
@@ -33,11 +33,11 @@ public class User implements Serializable {
 		this.pwd = pwd;
 	}
 
-	public int getLevel() {
+	public String getLevel() {
 		return level;
 	}
 
-	public void setLevel(int level) {
+	public void setLevel(String level) {
 		this.level = level;
 	}
 
@@ -111,7 +111,7 @@ public class User implements Serializable {
 		
 		sb.append("\n");
 		sb.append(this.getClass().getName()).append("\n");
-		sb.append("유저 아이디 [ " + id + " ] \n");
+		sb.append("회원 아이디 [ " + id + " ] \n");
 		sb.append("비밀번호    [ " + pwd + " ] \n");
 		sb.append("등급        [ " + level + " ] \n");
 		sb.append("아이피      [ " + clientIp + " ] \n");
