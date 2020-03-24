@@ -9,9 +9,10 @@
 
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="defaultEncoding" value="utf-8" />
+		<property name="fallbackToSystemLocale" value="false"/>
 		<property name="basenames">
 			<list>
-				<value>classpath:locale/home</value>
+				<value>/locale/home</value>
 			</list>
 		</property>
 	</bean>
