@@ -7,7 +7,7 @@ public class UserPoint implements Serializable {
 
 	private int upno;
 
-	private String user;
+	private String id;
 	
 	/** 포인트 정보 */
 	private Point point;
@@ -33,14 +33,14 @@ public class UserPoint implements Serializable {
 		this.upno = upno;
 	}
 
-	public String getUser() {
-		return user;
+	public String getId() {
+		return id;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setUser(String id) {
+		this.id = id;
 	}
-
+	
 	public Point getPoint() {
 		return point;
 	}
@@ -104,11 +104,10 @@ public class UserPoint implements Serializable {
 		sb.append("\n");
 		sb.append(this.getClass().getName()).append("\n");
 		sb.append("번호             [ " + upno + " ] \n");
-		sb.append("회원             [ " + user + " ] \n");
+		sb.append("회원             [ " + id + " ] \n");
 		sb.append("포인트 정보      [ " + point.toString() + " ] \n");
 		sb.append("포인트 적립일    [ " + savePointDate + " ] \n");
 		sb.append("포인트 사용일    [ " + usePointDate + " ] \n");
-		sb.append("회원             [ " + user + " ] \n");
 		sb.append("수정자           [ " + updateAdmin + " ] \n");
 		sb.append("수정일           [ " + updateDate + " ] \n");
 		sb.append("수정 이유        [ " + updateMsg + " ] \n");
