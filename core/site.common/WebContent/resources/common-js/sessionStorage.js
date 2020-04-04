@@ -4,7 +4,7 @@ import { xhr } from './xhr.js';
 
 function getValidJson() {
 
-	const json = sessionStorage.getItem('valid.json');
+	const json = sessionStorage.getItem('json.valid');
 	
 	if(json == null) {
 		setValidJson();
@@ -15,8 +15,8 @@ function getValidJson() {
 
 function setValidJson() {
 
-	xhr('valid.json', null, result => { 
-		sessionStorage.setItem('valid.json', result);			
+	xhr('json.valid', null, result => { 
+		sessionStorage.setItem('json.valid', result);			
 	});
 
 }
