@@ -10,6 +10,7 @@ export function fetchInit(url, data) {
 		headers: new Headers({
 			'charset': 'utf-8',
 			'content-type': contentType,
+			'accept': contentType
 		}),
 		method: 'POST',
 		mode: 'cors',
