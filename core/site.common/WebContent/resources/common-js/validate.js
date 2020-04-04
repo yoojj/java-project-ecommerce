@@ -6,6 +6,21 @@ const valid = session.getValidJson();
 
 export function validate($data, callback) {
 	
+	const id = $data.hasOwnProperty('adminId') ? 'adminId' : 'userId';
+	const pwd = $data.hasOwnProperty('adminPwd') ? 'adminPwd' : 'userPwd';
+
+	Object.defineProperties(
+		$data, {
+			'id' : Object.getOwnPropertyDescriptor($data, id),
+			'pwd' : Object.getOwnPropertyDescriptor($data, pwd)
+		}
+	);
+	
+	delete $data[id];
+	delete $data[pwd];
+
+
+	
 	for(let key in $data){
 		
 		switch(key){
@@ -66,7 +81,7 @@ export function validate($data, callback) {
 			break;
 		} 
 		
-	} // end for
+	}
 
 	return callback(true);
 }
