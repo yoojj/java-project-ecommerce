@@ -12,12 +12,15 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		</param-value>
 	</context-param>
 
-
-
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
+
+
+	<listener>
+		<listener-class>ex.ecommerce.admin.listener.AdminBindingListener</listener-class>
+	</listener>
+		
 	
 	
 	<filter>
@@ -37,8 +40,19 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
 		<dispatcher>ERROR</dispatcher>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>pwdEncryptionFilter</filter-name>
+		<filter-class>ex.ecommerce.common.filter.PwdEncryptionFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>pwdEncryptionFilter</filter-name>
+		<url-pattern>/ajax.adminLogin</url-pattern>
 	</filter-mapping>
 
 
@@ -50,7 +64,6 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
 				classpath:config/app/*.xml
-				classpath:config/app/*/*.xml
 			</param-value>
 		</init-param>
 		<init-param>
