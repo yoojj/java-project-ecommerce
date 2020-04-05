@@ -14,7 +14,7 @@ import ex.ecommerce.common.constant.ValidConstant;
 @Controller
 public class ValidController {
 
-	@PostMapping(value="valid.json") 
+	@PostMapping(value="json.valid") 
 	@ResponseBody 
 	public Object validJson() throws Exception {
 		return VALID_JSON();
@@ -22,7 +22,7 @@ public class ValidController {
 
 	private static final Object VALID_JSON() throws Exception {
 
-		Map<String, Object> json = new HashMap<>();
+		final Map<String, Object> json = new HashMap<>();
 
 		json.put("id",      new Valid(String.valueOf(ValidConstant.ID_MIN_NUM), ValidConstant.REG_ENG_NUM));
 		json.put("pwd",     new Valid(String.valueOf(ValidConstant.PWD_MIN_NUM)));
