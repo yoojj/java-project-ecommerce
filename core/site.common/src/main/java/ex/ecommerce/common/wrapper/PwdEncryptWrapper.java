@@ -1,4 +1,4 @@
-package ex.ecommerce.common.module.pwdencryption;
+package ex.ecommerce.common.wrapper;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
