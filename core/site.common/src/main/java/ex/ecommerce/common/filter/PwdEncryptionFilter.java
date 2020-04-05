@@ -11,7 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
-import ex.ecommerce.common.module.pwdencryption.PwdEncryptWrapper;
+import ex.ecommerce.common.wrapper.PwdEncryptWrapper;
 
 @WebFilter
 public class PwdEncryptionFilter implements Filter {
