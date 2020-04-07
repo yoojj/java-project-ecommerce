@@ -9,9 +9,13 @@
  	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/" />
-			<mvc:mapping path="/main" />
 			<mvc:mapping path="/admin/**" />
 			<bean class="ex.ecommerce.admin.interceptor.AdminLoginCheckInterceptor" />
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/ajax.adminLogin" />
+			<bean class="ex.ecommerce.admin.interceptor.AdminIPCheckInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
