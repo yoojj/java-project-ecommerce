@@ -22,19 +22,6 @@
 
 <body>
 
-
-
-<script>
-Object.defineProperty(window, '$constant', {
-
-	value : {},
-	writable: true
-
-});
-</script>
-
-
-
 <header class="common-header-layout common-header-wrap">
 <h1 class="header-logo-layout header-logo">
 	<a href="${path}/">logo</a>
@@ -62,6 +49,17 @@ Object.defineProperty(window, '$constant', {
 		<li class="email"><span class="hide">이메일</span>메일
 	</ul>
 </footer>
+
+
+
+<script>
+Object.defineProperty(window, '$constant', {
+
+	value : {},
+	writable: true
+
+});
+</script>
 
 </body>
 </html>
