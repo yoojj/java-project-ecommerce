@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import ex.ecommerce.admin.module.member.Admin;
+import ex.ecommerce.admin.module.member.AdminLoginDTO;
 import ex.ecommerce.admin.module.member.AdminModifyDTO;
 import ex.ecommerce.admin.module.member.AdminRegDTO;
 
@@ -19,7 +20,9 @@ public class AdminDAOImpl {
 		this.sqlSession = sqlSession;
 	}
 
-	public int insert(AdminRegDTO adminRegDTO) throws SQLException {
+	
+	
+	public int insert(final AdminRegDTO adminRegDTO) throws SQLException {
 		return sqlSession.insert("AdminMapper.insert", adminRegDTO);
 	}
 
@@ -39,12 +42,20 @@ public class AdminDAOImpl {
 		return sqlSession.selectList("AdminMapper.selectList");
 	}
 
-	public int update(AdminModifyDTO adminModifyDTO) throws SQLException {
+	public int updateLogin(final AdminLoginDTO adminLoginDTO) throws SQLException {
+		return sqlSession.update("AdminMapper.updateLogin", adminLoginDTO);
+	}
+	
+	public int update(final AdminModifyDTO adminModifyDTO) throws SQLException {
 		return sqlSession.update("AdminMapper.update", adminModifyDTO);
 	}
 	
 	public int delete(final String id) throws SQLException {
 		return sqlSession.delete("AdminMapper.delete", id);
+	}
+
+	public int realDelete(final String id) throws SQLException {
+		return sqlSession.delete("AdminMapper.realDelete", id);
 	}
 
 }
