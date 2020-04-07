@@ -1,10 +1,10 @@
 @charset "utf-8";
 
-/*** 로그인 ***/
+/* 로그인 */
 .admin-login-wrap {width:100vw;height:100vh;background:#eee;overflow:hidden;}
 
 .admin-login-form {width:30%;max-width:250px;margin:50px auto;padding:50px;
-	border-top:15px solid #f08080;border-radius:5px 5px 10px 10px;background:#fff;}
+	border-top:15px solid crimson;border-radius:5px 5px 10px 10px;background:#fff;}
 
 .admin-login-form legend {margin-bottom:25px;font-weight:bold;}
 .admin-login-form ul {margin-bottom:35px;}
@@ -19,5 +19,5 @@
 .error-msg {margin-top:5px;margin-bottom:10px;font-size:80%;color:red;}
 
 .admin-login-btn input[type='submit']{display:inline-block;width:100%;padding:10px;
-	border:1px solid #f08080;box-sizing:border-box;transition:0.3s;}
-.admin-login-btn input[type='submit']:hover {color:#fff;font-weight:bold;background:#f08080;}
+	border:1px solid crimson;box-sizing:border-box;transition:0.3s;}
+.admin-login-btn input[type='submit']:hover {color:#fff;font-weight:bold;background:crimson;}
