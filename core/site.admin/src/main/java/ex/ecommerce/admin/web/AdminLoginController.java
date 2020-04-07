@@ -1,59 +1,81 @@
 package ex.ecommerce.admin.web;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.ModelAndView;
 
-import ex.ecommerce.admin.module.AdminLoginDTO;
-import ex.ecommerce.admin.module.AdminLoginServiceImpl;
+import ex.ecommerce.admin.module.member.AdminLoginDTO;
+import ex.ecommerce.admin.module.member.impl.AdminLoginServiceImpl;
 import ex.ecommerce.common.constant.SessionConstant;
-import ex.ecommerce.common.result.Result;
+import ex.ecommerce.common.module.result.CodeEnum;
+import ex.ecommerce.common.module.result.Result;
 
-@Controller 
 @SessionAttributes(SessionConstant.ADMIN_KEY)
+@Controller 
 public class AdminLoginController {
 	
-	@Autowired
 	private AdminLoginServiceImpl loginService;
+
+	public AdminLoginController(AdminLoginServiceImpl loginService) {
+		this.loginService = loginService;
+	}
 	
-	@GetMapping(value={"/", "login"})
-	public String adminLogin(Model model) throws Exception {
-		
-		model.addAttribute("adminLoginForm", new AdminLoginDTO());
-		
+	
+	
+	@GetMapping(value="login")
+	public String adminLoginPage() throws Exception {
 		return "login";
 	}
 	
-	@PostMapping(value="adminLoginSubmit")
-	public ModelAndView adminLoginSubmit(@Valid @ModelAttribute("adminLoginForm") AdminLoginDTO loginDTO,
-			Errors valid) throws Exception {
+	@PostMapping(value="ajax.adminLogin")
+	@ResponseBody
+	public Result adminLoginAjax(@Valid @RequestBody final AdminLoginDTO loginDTO, Errors valid, 
+			@RequestAttribute("ip") String ip, Model model) throws Exception {
+	
+		Result result = null;
 
-		ModelAndView model = new ModelAndView();
-		model.setViewName("login");
+		if(valid.hasErrors()) { 
 
-		if( valid.hasErrors() == false ) {
-			Result result = loginService.select(loginDTO);
-			model.addObject("result", result);
+			final List<FieldError> errors = valid.getFieldErrors();
+			
+			final Map<String, Object> error = new HashMap<>();
 
-			if( result.getResult() != null ) {
-				model.addObject(SessionConstant.ADMIN_KEY, result.getResult());
-				model.setViewName("redirect:main");
+			for (FieldError e : errors)
+				error.put(e.getField(), e.getDefaultMessage());
+						
+			result = new Result();
+			result.setCode(CodeEnum.ERROR.getCode());
+			result.setResult(error);
+			
+		} else {
+			
+			loginDTO.setClientIp(ip);
+			
+			result = loginService.select(loginDTO);
+			
+			if(result.getCode() == CodeEnum.SUCCESS.getCode()) {
+				model.addAttribute(SessionConstant.ADMIN_KEY, result.getResult());
 			}
 
 		}
 
-		return model;
+		return result;
 	}
-	
+
 	@GetMapping(value="logout")
 	public String adminLogout(SessionStatus sessionStatus) throws Exception {
 		
