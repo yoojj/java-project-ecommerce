@@ -6,10 +6,14 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
+
  	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/" />
-			<mvc:mapping path="/admin/**" />
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/common-css/**" />
+			<mvc:exclude-mapping path="/common-js/**" />
+			<mvc:exclude-mapping path="/dist/**" />
+			<mvc:exclude-mapping path="/js/**" />
 			<bean class="ex.ecommerce.admin.interceptor.AdminLoginCheckInterceptor" />
 		</mvc:interceptor>
 		
@@ -18,21 +22,6 @@
 			<bean class="ex.ecommerce.admin.interceptor.AdminIPCheckInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
-	
-  	<!--
- 	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/**" />
-			<mvc:exclude-mapping path="/common-css/**" />
-			<mvc:exclude-mapping path="/common-js/**" />
-			<mvc:exclude-mapping path="/css/**" />
-			<mvc:exclude-mapping path="/js/**" />
-			<mvc:exclude-mapping path="/login" />
-			<mvc:exclude-mapping path="/adminLoginSubmit" />
-			<bean class="ex.ecommerce.admin.interceptor.AdminLoginCheckInterceptor" />
-		</mvc:interceptor>
-	</mvc:interceptors>
-	-->
 
 
 
