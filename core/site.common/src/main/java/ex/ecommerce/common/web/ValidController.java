@@ -1,4 +1,4 @@
-package ex.ecommerce.common.module.valid;
+package ex.ecommerce.common.web;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ex.ecommerce.common.constant.ValidConstant;
+import ex.ecommerce.common.vo.Valid;
 
 @Controller
 public class ValidController {
 
-	@PostMapping(value="json.valid") 
+	@PostMapping(value="ajax.valid.json") 
 	@ResponseBody 
 	public Object validJson() throws Exception {
 		return VALID_JSON();
