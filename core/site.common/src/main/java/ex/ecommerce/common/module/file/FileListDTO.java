@@ -1,4 +1,4 @@
-package ex.ecommerce.common.file;
+package ex.ecommerce.common.module.file;
 
 import java.io.Serializable;
 
