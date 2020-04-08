@@ -1,0 +1,72 @@
+@charset "utf-8";
+
+/******************** 서브 컨텐츠 ********************/
+.common-content-wrap {}
+
+
+
+/********** 컨텐츠 공통 **********/
+.common-content {position:relative;width:90%;margin:50px auto;}
+.page-title {margin-bottom:5px;font-weight:normal;font-size:120%;}
+.page-location {margin-bottom:50px;font-size:12px;}
+
+
+
+/***** 공통 버튼 *****/
+.common-btn-wrap {display:inline-block;}
+.common-btn-wrap a,
+.common-btn-wrap input[type=submit],
+.common-btn-wrap input[type=button],
+.common-btn-wrap button {display:inline-block;padding:5px 10px;color:#fff;border-radius:3px;}
+
+.common-btn-wrap .write-btn,
+.common-btn-wrap .reg-btn {background:blueviolet;}
+.common-btn-wrap .modify-btn,
+.common-btn-wrap .update-btn {background:cornflowerblue;}
+.common-btn-wrap .cancel-btn {background:rosybrown;}
+.common-btn-wrap .delete-btn {background:darksalmon;}
+
+.common-btn-wrap a:hover,
+.common-btn-wrap input[type=submit]:hover,
+.common-btn-wrap input[type=button]:hover,
+.common-btn-wrap button:hover:not([disabled]) {opacity:.5;}
+
+.common-btn-top-right {position:absolute;top:0;right:0;}
+
+
+
+/***** 공통 그림자 박스 *****/
+.common-box-shadow {padding:50px;box-sizing:border-box;box-shadow:0 0 10px #ccc;background:#fff;}
+
+
+
+/***** 공통 테이블 *****/
+.common-table {}
+.common-table thead th {padding-top:10px;font-weight:600;}
+.common-table thead th::after {display:block;content:'';width:80%;margin:10px auto;border-bottom:1px solid #333;}
+.common-table thead th.title::after {width:95%;}
+
+.common-table tbody td {padding-top:5px;padding-bottom:10px;font-size:80%;}
+.common-table tbody td.title {padding-left:15px;}
+.common-table tbody td:not(.title) {text-align:center;}
+
+.common-table .td-left {text-align:left;}
+.common-table .td-center {text-align:center;}
+
+
+
+/***** 공통 폼 *****/
+.common-form {}
+.common-form ul {margin-bottom:30px;}
+.common-form ul li {margin-bottom:15px;}
+
+.common-form label {}
+.common-form input[type=text],
+.common-form input[type=password] {min-width:100px;width:50%;}
+.common-form input[type=radio] {vertical-align:middle;}
+.common-form input.title {}
+.common-form textarea {}
+
+.common-form .form-btn {padding:5px 10px;font-size:80%;border-radius:3px;background:#eee;}
+.common-form .form-btn:hover {background:#aaa;}
+.common-form .form-error-msg {margin-top:5px;margin-bottom:10px;font-size:80%;color:red;}
