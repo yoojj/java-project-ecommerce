@@ -16,7 +16,7 @@ export function toggleModal(){
 	
 	if( modalContainer == null ){
 		
-		$modalContainer.removeAttribute('class', 'modal-close');
+		$modalContainer.removeAttribute('class', 'modal-close-motion');
 
 		document.body.appendChild($modalContainer);
 		
@@ -24,7 +24,7 @@ export function toggleModal(){
 
 	} else {
 		
-		$modalContainer.setAttribute('class', 'modal-close');
+		$modalContainer.setAttribute('class', 'modal-close-motion');
 		
 		setTimeout(function(){
 			document.body.removeChild($modalContainer);
@@ -47,16 +47,19 @@ function addModalListener(){
 		modalContainer.querySelector('#modalOverlay').addEventListener('click', toggleModal);
 		modalContainer.querySelector('#btnCloseModal').addEventListener('click', toggleModal);
 	}
+	
 }
 
 
 
 function removeModalListener(modalContainer){
+	
 	if(modalContainer){
 		modalContent(modalContainer);
 		modalContainer.querySelector('#modalOverlay').removeEventListener('click', toggleModal);
 		modalContainer.querySelector('#btnCloseModal').removeEventListener('click', toggleModal);
 	}
+	
 }
 
 
