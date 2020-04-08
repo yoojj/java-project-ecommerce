@@ -1,9 +1,9 @@
-package ex.ecommerce.common.file;
+package ex.ecommerce.common.module.file;
 
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
-public class FileVO implements Serializable {
+public class File implements Serializable {
 
 	private int fno;
 	private int fk;
