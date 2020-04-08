@@ -1,4 +1,4 @@
-package ex.ecommerce.common.vo.site;
+package ex.ecommerce.common.vo;
 
 import java.io.Serializable;
 
