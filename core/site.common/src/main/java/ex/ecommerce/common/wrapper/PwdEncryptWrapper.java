@@ -12,9 +12,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import ex.ecommerce.common.vo.LoginDTO;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 
 public class PwdEncryptWrapper extends HttpServletRequestWrapper {
 
@@ -29,13 +31,20 @@ public class PwdEncryptWrapper extends HttpServletRequestWrapper {
 			
 			try(final BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
 
-				String line = br.readLine();
+				String json = br.readLine();
 
 				final ObjectMapper om = new ObjectMapper();
-				final LoginDTO loginDTO = om.readValue(line, LoginDTO.class);
 				
-				this.data = om.writeValueAsString(loginDTO);
-
+				final JsonNode node = om.readValue(json, JsonNode.class);
+				
+				final String pwd = node.get("pwd").toString();
+				
+				final String pwdEncrypt = BCrypt.withDefaults().hashToString(12, pwd.toCharArray());
+				
+				((ObjectNode)node).put("pwd", pwdEncrypt); 		
+				
+				this.data = node.toString();
+				
 			} catch(IOException e) {
 				throw e;
 			}
