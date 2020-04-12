@@ -3,7 +3,7 @@ package ex.ecommerce.admin.module.member;
 import java.io.Serializable;
 
 @SuppressWarnings("serial") 
-public class AdminModifyDTO implements Serializable {
+public class AdminUpdateDTO implements Serializable {
 
 	private String id;
 	private String pwd;
