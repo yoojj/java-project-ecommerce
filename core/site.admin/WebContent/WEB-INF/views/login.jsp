@@ -3,7 +3,7 @@
 <section class="admin-login-wrap">
 <h1 class="hide">로그인</h1>
 
-	<form class="admin-login-form" id="adminLoginForm">
+	<form class="admin-login-form" id="adminLoginForm" method="post">
 	<fieldset>
 	<legend>관리자 로그인</legend>
 	<ul>
@@ -24,26 +24,28 @@
 
 
 
-<script type="module">
-import { validate } from '${path}/common-js/validate.js';
-import { fetchInit as fetch } from '${path}/common-js/fetch.js';
-
-document.getElementById('adminLoginForm').addEventListener('submit', (e) => {
+<script>
+document.getElementById('adminLoginForm').addEventListener('submit', async (e) => {
 
 	e.preventDefault();
 
+	const {validate} = await import('${path}/common-js/validate.js');
+	const {fetchInit} = await import('${path}/common-js/fetch.js');
+	const fetch = fetchInit; 
+	const {getAdminSessionConstant} = await import('${path}/src/js/adminSessionStorage.js');
+	
 	if(document.querySelector('.error-msg') != null){
 		document.querySelectorAll('.error-msg').forEach(e => e.parentNode.removeChild(e));
 	}
 
 	const $data = {
-		adminId : document.getElementById('adminId').value,
-		adminPwd : document.getElementById('adminPwd').value
+		id : document.getElementById('adminId').value,
+		pwd : document.getElementById('adminPwd').value
 	}
 
 	validate( $data, valid => {
 
-		if( valid != true ){
+		if(valid != true){
 
 			alert(valid);
 
@@ -60,7 +62,12 @@ document.getElementById('adminLoginForm').addEventListener('submit', (e) => {
 					}
 			
 				} else {
+					
+					const key = getAdminSessionConstant();
+					sessionStorage.setItem(key, JSON.stringify(server.result));	
+
 					window.location.href = 'main';	
+
 				}
 
 			});	
@@ -73,23 +80,21 @@ document.getElementById('adminLoginForm').addEventListener('submit', (e) => {
 
 
 function errorPrint(e){
-	
-	console.log(e);
 
 	const li = document.getElementsByTagName('li');
 	
-	if(e.adminId != undefined){
+	if(e.id != undefined){
 		const adminId = document.createElement('div');
 		adminId.className = 'error-msg';
-		const error = document.createTextNode(e.adminId);
+		const error = document.createTextNode(e.id);
 		adminId.appendChild(error);
 		li[0].appendChild(adminId);
 	}
 	
-	if(e.adminPwd != undefined){
+	if(e.pwd != undefined){
 		const adminPwd = document.createElement('div');
 		adminPwd.className = 'error-msg';
-		const error = document.createTextNode(e.adminPwd);
+		const error = document.createTextNode(e.pwd);
 		adminPwd.appendChild(error);
 		li[1].appendChild(adminPwd);
 	}
