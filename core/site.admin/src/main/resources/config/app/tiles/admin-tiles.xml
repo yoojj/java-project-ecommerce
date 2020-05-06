@@ -6,27 +6,64 @@
 
 
 
-	<definition name="defalut-template" template="/WEB-INF/template/layout/admin-layout.jsp">
-		<put-attribute name="title" value="" />
-		<put-attribute name="nav" value="/WEB-INF/template/layout/admin-nav.jsp" />
-		<put-attribute name="content" value="" />
+	<definition name="defalut-template" template="/WEB-INF/template/layout/admin-default-layout.jsp">
+		<put-attribute name="title"      value="" />
+		<put-attribute name="head"       value="/WEB-INF/template/layout/component/admin-head.jsp" />		
+		<put-attribute name="nav"        value="/WEB-INF/template/layout/component/admin-nav.jsp" />
+		<put-attribute name="content"    value="" />
+	</definition>
+
+	<definition name="popup-template"   template="/WEB-INF/template/layout/admin-popup-layout.jsp">
+		<put-attribute name="title"      value="" />
+		<put-attribute name="head"       value="/WEB-INF/template/layout/component/admin-head.jsp" />		
+		<put-attribute name="content"    value="" />
 	</definition>
 	
+	<definition name="login-template"   template="/WEB-INF/template/layout/admin-login-layout.jsp">
+		<put-attribute name="title"      value="" />
+		<put-attribute name="head"       value="/WEB-INF/template/layout/component/admin-head.jsp" />		
+		<put-attribute name="content"    value="" />
+	</definition>
+	
+	<definition name="error-template"   template="/WEB-INF/template/layout/admin-error-layout.jsp">
+		<put-attribute name="title"      value="error" />
+		<put-attribute name="content"    value="" />
+	</definition>
+	
+		
 
-
-	<definition name="login" extends="defalut-template">
-		<put-attribute name="title" value="로그인" />
-		<put-attribute name="content" value="/WEB-INF/views/login.jsp" />
+	<definition name="error/*"          extends="error-template">
+		<put-attribute name="content"    value="/WEB-INF/views/error/{1}.jsp" />
+	</definition> 
+	
+	<definition name="login"            extends="login-template">
+		<put-attribute name="title"      value="로그인" />
+		<put-attribute name="content"    value="/WEB-INF/views/login.jsp" />
 	</definition> 
 
-	<definition name="main" extends="defalut-template">
-		<put-attribute name="title" value="메인" />
-		<put-attribute name="content" value="/WEB-INF/views/admin/main.jsp" />
+	<definition name="admin/*/popup"    extends="popup-template">
+		<put-attribute name="title"      value="팝업" />
+		<put-attribute name="content"    value="/WEB-INF/views/admin/{1}/popup.jsp" />
 	</definition>
 	
-	<definition name="sub" extends="defalut-template">
-		<put-attribute name="title" value="서브" />
-		<put-attribute name="content" value="/WEB-INF/views/admin/{1}/{2}.jsp" />
+	<definition name="main"             extends="defalut-template">
+		<put-attribute name="title"      value="메인" />
+		<put-attribute name="content"    value="/WEB-INF/views/admin/main.jsp" />
+	</definition>
+
+	<definition name="admin/profile"    extends="defalut-template">
+		<put-attribute name="title"      value="프로필" />
+		<put-attribute name="content"    value="/WEB-INF/views/admin/profile.jsp" />
+	</definition>
+		
+	<definition name="admin/*/*"        extends="defalut-template">
+		<put-attribute name="title"      value="서브" />
+		<put-attribute name="content"    value="/WEB-INF/views/admin/{1}/{2}.jsp" />
+	</definition>
+	
+	<definition name="admin/*/*/*"      extends="defalut-template">
+		<put-attribute name="title"      value="서브" />
+		<put-attribute name="content"    value="/WEB-INF/views/admin/{1}/{2}/{3}.jsp" />
 	</definition>
 	
 	
