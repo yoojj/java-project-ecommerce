@@ -34,16 +34,16 @@ document.getElementById('btnRegAdmin').addEventListener('click', toggleModal);
 			<button type="button" class="form-btn id-check-btn" id="idCheck">아이디 확인</button>
 		</li>
 		<li>
-			<label for="adminId">사용 아이디</label>
-			<input type="text" id="adminId" placeholder="사용 아이디" readonly>
+			<label for="setAdminId">사용 아이디</label>
+			<input type="text" id="setAdminId" placeholder="사용 아이디" readonly>
 		</li>
 		<li>
-			<label for="adminPwd">비밀번호</label>
-			<input type="password" id="adminPwd" title="비밀번호를 입력하세요" >
+			<label for="setAdminPwd">비밀번호</label>
+			<input type="password" id="setAdminPwd" title="비밀번호를 입력하세요" >
 		</li>
 		<li>
-			<label for="adminLevel">등급</label>
-			<select name="level" id="adminLevel" title="관리자 등급을 입력하세요" >
+			<label for="setAdminLevel">등급</label>
+			<select name="level" id="setAdminLevel" title="관리자 등급을 입력하세요" >
 			<c:forEach var="level" items="${adminLevelEnum}">
 				<option value="${level.num}">${level.str}</option>
 			</c:forEach>
@@ -52,7 +52,7 @@ document.getElementById('btnRegAdmin').addEventListener('click', toggleModal);
 		</li>
 		<li>
 			<label for="adminState">사용여부</label>
-			<input type="checkbox" name="status" id="adminState" title="사용 여부를 선택하세요" >
+			<input type="checkbox" name="status" id="setAdminState" title="사용 여부를 선택하세요" >
 		</li>
 		<li>
 			<label for="adminRegMag" style="vertical-align:top;">등록 이유</label>
@@ -109,7 +109,7 @@ document.getElementById('idCheck').addEventListener('click', () => {
 	function setResult(id){
 		
 		alert(`입력한 아이디 [\${id}]를 사용합니다.`);
-		document.getElementById('adminId').value = id;
+		document.getElementById('setAdminId').value = id;
 		document.getElementById('checkId').value = '';
 
 	}
@@ -128,10 +128,10 @@ document.getElementById('adminRegForm').addEventListener('submit', (e) => {
 	}
 
 	const $data = {
-		id: document.getElementById('adminId').value,
-		pwd: document.getElementById('adminPwd').value,
-		level: document.getElementById('adminLevel').value,
-		state: document.getElementById('adminState').checked,
+		id: document.getElementById('setAdminId').value,
+		pwd: document.getElementById('setAdminPwd').value,
+		level: document.getElementById('setAdminLevel').value,
+		state: document.getElementById('setAdminState').checked,
 		regMsg: document.getElementById('adminRegMag').value
 	}
 	
