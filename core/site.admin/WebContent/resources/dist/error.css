@@ -1,0 +1,8 @@
+/********** 에러 공통 **********/
+.common-error-wrap {width:100vw;height:100vh;background:#eee;overflow:auto;}
+.common-error-wrap div {width:50%;margin:50px auto;text-align:center;}
+.common-error-wrap h1 {margin-bottom:35px;font-size:28.5px;text-transform:uppercase;}
+.common-error-wrap h1::after {display:block;content:"";width:250px;margin:15px auto;border-bottom:thin solid #333;}
+.common-error-wrap p {margin-bottom:15px;}
+.common-error-wrap a {padding:5px 15px;font-size:13px;color:#fff;border-radius:5px;background:#333;}
+.common-error-wrap a:hover {background:#666;}
