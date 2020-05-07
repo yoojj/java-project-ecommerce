@@ -1,0 +1,18 @@
+/********** 팝업 공통 **********/
+.common-popup-wrap {padding:25px;box-sizing:border-box;}
+.common-popup-wrap h1 {margin-bottom:25px;}
+
+.common-popup-error-wrap {padding:15px 0;text-align:center;border:1px solid #eee;background:#fff;}
+.common-popup-error-wrap strong {color:red;}
+
+
+
+/*** [member-popup] ***/
+.popup-admin-info-wrap {margin-bottom:25px;}
+
+.popup-admin-info-wrap dl {box-sizing:border-box;}
+.popup-admin-info-wrap dt,
+.popup-admin-info-wrap dd {padding:5px;box-sizing:border-box;border:1px solid #eee;background:#fff;}
+
+.popup-admin-info-wrap dt {display:inline-block;width:100px;margin-bottom:15px;}
+.popup-admin-info-wrap dd {display:inline-block;width:calc(100% - 125px);margin-left:5px;}
