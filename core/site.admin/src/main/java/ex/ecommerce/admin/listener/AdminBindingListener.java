@@ -1,9 +1,6 @@
 package ex.ecommerce.admin.listener;
-import java.util.Hashtable;
-import java.util.Map;
 
 import javax.servlet.annotation.WebListener;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionBindingListener;
 
@@ -12,18 +9,17 @@ public class AdminBindingListener implements HttpSessionBindingListener {
 
 	/**
 	 * 중복 로그인 방지 클래스   
+	 * 
+	 * - HttpSessionBindingListener 세션 바인딩 및 언바인딩시 이벤트 
+	 * - HttpSessionListener 세션 생성 및 해제시 이벤트 
 	 */
 
-	private static Map<HttpSession, String> loginAdmin = new Hashtable<>();
-	
 	@Override
-	public void valueBound(HttpSessionBindingEvent arg0) {
-
+	public void valueBound(HttpSessionBindingEvent event) {
 	}
 
 	@Override
 	public void valueUnbound(HttpSessionBindingEvent event) {
-
 	}
 
 }
