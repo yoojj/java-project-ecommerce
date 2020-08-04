@@ -18,6 +18,11 @@ import ex.ecommerce.common.util.LoggerUtil;
 
 public class AdminIPCheckInterceptor extends HandlerInterceptorAdapter {
 
+	// 임시 
+	// 별도 클래스로 분리  
+	// DB에서 데이터를 받아오게 수정 
+	final List<String> IP_LIST = Arrays.asList("14.102.128.0", "103.146.230.0");
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) 
 			throws Exception{
@@ -26,16 +31,14 @@ public class AdminIPCheckInterceptor extends HandlerInterceptorAdapter {
 
 		final String ip = IPUtil.getIP(request);
 
-		// 임시 추후 DB에서 받아옴 
-		final List<String> IP_LIST	= Arrays.asList("14.102.128.0", "103.146.230.0");
-		
 		final boolean isAccess = IP_LIST.contains(ip);
 
 		if (isAccess == true){ 
 
 			final Result result = new Result();
+			
 			result.setCode(CodeEnum.ERROR.getCode());
-			result.setMessage("제한된 IP 입니다.");
+			result.setMessage("접근이 제한된 IP 입니다.");
 
 			final ObjectMapper om = new ObjectMapper();
 			final String json = om.writeValueAsString(result);
@@ -46,6 +49,8 @@ public class AdminIPCheckInterceptor extends HandlerInterceptorAdapter {
 			return false;
 		}
 
+		request.setAttribute("ip", ip);
+		
 		return true;
 	}
 
