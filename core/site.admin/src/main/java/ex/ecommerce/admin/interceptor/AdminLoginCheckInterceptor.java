@@ -20,11 +20,11 @@ public class AdminLoginCheckInterceptor extends HandlerInterceptorAdapter {
 		
 		LoggerUtil.log.info(">>> 관리자 로그인 확인 인터셉터 ");
 
-		if ( request.getSession().getAttribute(SessionConstant.ADMIN_KEY) == null ){ 
+		if (request.getSession().getAttribute(SessionConstant.ADMIN_KEY) == null){ 
 
 			if(this.isUrlAccess(request)) {
 				return true;	
-
+				
 			} else {
 				
 				PrintWriter out = response.getWriter();
@@ -32,19 +32,19 @@ public class AdminLoginCheckInterceptor extends HandlerInterceptorAdapter {
 				response.setContentType("text/html;charset=UTF-8");
 				out.println("<script>");
 				out.println("alert('로그인이 필요합니다.');");
-				out.println("window.location.href = window.location.origin + '/' + "
-						+ "window.location.pathname.split('/')[1] + '/login' ");
+				out.println("location.href = location.origin + '/' + " + "location.pathname.split('/')[1] + '/login' ");
 				out.println("</script>");
 				out.close();  
 				
 				return false;
 			}
 			
-		} else if ( request.getSession().getAttribute(SessionConstant.ADMIN_KEY) != null ){ 
+		} else if(request.getSession().getAttribute(SessionConstant.ADMIN_KEY) != null){ 
 		
 			if(this.isUrlAccess(request)) {
 
 				response.sendRedirect("main");
+				
 				return false;
 				
 			} else {
@@ -68,7 +68,14 @@ public class AdminLoginCheckInterceptor extends HandlerInterceptorAdapter {
 		
 		final String url = urlHelper.getPathWithinApplication(request);
 		
-		if(url.equals("/login")) {
+		// 로그인 체크가 필요없는 경로 등록
+		if(url.equals("/ajax.valid.json")) {
+			return true;
+		
+		} else if(url.equals("/ajax.adminSessionConstant")) {
+			return true;
+			
+		} else if(url.equals("/login")) {
 			return true;
 			
 		} else if(url.equals("/ajax.adminLogin")) {
