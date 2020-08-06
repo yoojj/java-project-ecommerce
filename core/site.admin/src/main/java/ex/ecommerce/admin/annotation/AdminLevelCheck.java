@@ -5,8 +5,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import ex.ecommerce.common.constant.AdminLevelEnum;
+
 @Retention(value = RetentionPolicy.RUNTIME)
 @Target(value = {ElementType.TYPE, ElementType.METHOD})
 public @interface AdminLevelCheck {
+	
+	public AdminLevelEnum level() default AdminLevelEnum.LEVEL_0;
 	
 }
