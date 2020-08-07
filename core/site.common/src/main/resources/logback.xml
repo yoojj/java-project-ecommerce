@@ -1,50 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration>
-<configuration scan="true" scanPeriod="60 seconds">
+<configuration>
 	
 	
-
-	<property resource="./properties/logback-dev.properties" />
-
-	<property name="LOGBACK_PATTERN_CONSOLE" value="%d{HH:mm:ss} [%-5level] [%logger{30}] :: %msg%n"/>
-	<property name="LOGBACK_PATTERN_FILE" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%thread] [%logger] :: %msg%n"/>
-	<property name="LOGBACK_FILE_NAME" value="${LOGBACK.FILE.NAME}"/>
-	<property name="LOGBACK_LOCATION" value="${LOGBACK.LOCATION}"/>
-
+	<property resource="properties/logback.properties" />
+	
+	<property name="LOGBACK_PATTERN_CONSOLE" value="%d{HH:mm:ss} [%-5level] [%logger{30}] :: %msg%n" />
+	<property name="LOGBACK_PATTERN_FILE"    value="${LOGBACK.PATTERN.FILE}"/>
+	<property name="LOGBACK_FILE_LOCATION"   value="${LOGBACK.FILE.LOCATION}"/>
+	<property name="LOGBACK_FILE_NAME"       value="${LOGBACK.FILE.NAME}"/>
+	<property name="LOGBACK_FILE_MAX"        value="30"/>
+	
 
 
 	<!-- 콘솔 로그 -->
 	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-		<layout class="ch.qos.logback.classic.PatternLayout">
-			<Pattern>${LOGBACK_PATTERN_CONSOLE}</Pattern>
-		</layout>
+		
+		<append>true</append>
+		
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<charset>UTF-8</charset>
+			<pattern>${LOGBACK_PATTERN_CONSOLE}</pattern>
+		</encoder>
+  		
 	</appender>
 	
 	
 	
 	<!-- 파일 로그 -->
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${LOGBACK_LOCATION}/${LOGBACK_FILE_NAME}.log</file>
+
+		<append>true</append>
 		
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${LOGBACK_LOCATION}/${LOGBACK_FILE_NAME}--%d{yyyy-MM-dd}.log</fileNamePattern>
-			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-				<maxFileSize>100MB</maxFileSize>
-				<maxHistory>30</maxHistory>
-			</timeBasedFileNamingAndTriggeringPolicy>
+		<file>${LOGBACK_FILE_LOCATION}/${LOGBACK_FILE_NAME}.log</file>
+		
+		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>10KB</MaxFileSize>
+		</triggeringPolicy>
+                  		
+ 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOGBACK_FILE_LOCATION}/${LOGBACK_FILE_NAME}.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+			<maxHistory>${LOGBACK_FILE_MAX}</maxHistory>
+			<totalSizeCap>5GB</totalSizeCap>
 		</rollingPolicy>
-		
-		<encoder>
+
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<charset>UTF-8</charset>
 			<pattern>${LOGBACK_PATTERN_FILE}</pattern>
 		</encoder>
+		
 	</appender>
 	
 	
 	
 	<!-- logger -->
-	<logger name="org.springframework" level="INFO"/>
-	<logger name="ex.ecommerce.*" level="INFO"/>
+	<logger name="org.springframework" level="INFO" />
+	<logger name="org.springframework.beans" level="DEBUG" />
+	<logger name="org.springframework.transaction" level="DEBUG" />
+
+	<logger name="jdbc"                level="OFF"/>
+	<logger name="jdbc.sqlonly"        level="DEBUG"/>
+	<logger name="jdbc.sqltiming"      level="OFF"/>
+	<logger name="jdbc.audit"          level="OFF"/>
+	<logger name="jdbc.resultset"      level="OFF"/>
+	<logger name="jdbc.resultsettable" level="DEBUG"/>
+	<logger name="jdbc.connection"     level="OFF"/>
+
+	<logger name="org.mybatis"         level="DEBUG" />
+
+	<logger name="ex.ecommerce"        level="DEBUG"/>
 
 	
 	
