@@ -7,24 +7,18 @@
 
 
 
-	<mvc:interceptors>
-	
-		<!-- 비회원만 접근 가능 -->
+ 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/user/*" />
-			<mvc:exclude-mapping path="/user/state" />
-			<bean class="ex.ecommerce.site.interceptor.VisitorCheckInterceptor" />
-		</mvc:interceptor>
-		
-		
-		<!-- 회원만 접근 가능 -->
-		<mvc:interceptor>
-			<mvc:mapping path="/myshop/**" />
+			<mvc:mapping path="/mypage/**" />
+			<mvc:exclude-mapping path="/common-css/**" />
+			<mvc:exclude-mapping path="/common-js/**" />
+			<mvc:exclude-mapping path="/dist/**" />
+			<mvc:exclude-mapping path="/src/js/**" />
+			<mvc:exclude-mapping path="/src/img/**" />
 			<bean class="ex.ecommerce.site.interceptor.UserLoginCheckInterceptor" />
 		</mvc:interceptor>
-		
 	</mvc:interceptors>
-
-
-
+	
+	
+	
 </beans>
