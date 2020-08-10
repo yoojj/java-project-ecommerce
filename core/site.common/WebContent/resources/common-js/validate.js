@@ -2,15 +2,16 @@ import * as session from './sessionStorage.js';
 
 
 
-const valid = session.getValidJson();
+let valid = session.getValidJson();
 
 export function validate($data, callback) {
-	
-	const data = {
-		id : $data.hasOwnProperty('adminId') ? $data['adminId'] : $data['userId'],
-		pwd : $data.hasOwnProperty('adminPwd') ? $data['adminPwd'] : $data['userPwd'],
+
+	if(valid == null) {
+		valid = session.getValidJson();
 	}
 
+	const data = $data;
+	
 	for(let key in data){
 		
 		switch(key){
