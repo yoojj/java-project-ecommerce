@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class Result implements Serializable {
 
 	private int code = CodeEnum.ERROR.getCode();
-	private String message;
+	private String message = CodeEnum.ERROR.getDescription();
 	private Object result;
 	private ResultMap resultMap;
 
