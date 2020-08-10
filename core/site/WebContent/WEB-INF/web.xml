@@ -8,8 +8,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath:config/*.xml
-			classpath:config/**/*.xml
+			classpath:config/*.xml 
 		</param-value>
 	</context-param>
 
