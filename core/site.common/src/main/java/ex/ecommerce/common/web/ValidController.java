@@ -15,7 +15,7 @@ import ex.ecommerce.common.vo.Valid;
 @Controller
 public class ValidController {
 
-	@PostMapping(value="ajax.valid.json") 
+	@PostMapping(value= {"ajax.valid.json", "**/ajax.valid.json"}) 
 	@ResponseBody 
 	public Object validJson() throws Exception {
 		return VALID_JSON();
