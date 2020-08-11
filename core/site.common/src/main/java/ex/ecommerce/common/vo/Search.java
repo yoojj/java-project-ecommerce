@@ -1,4 +1,4 @@
-package ex.ecommerce.common.vo.site;
+package ex.ecommerce.common.vo;
 
 import java.io.Serializable;
 
@@ -40,13 +40,13 @@ public class Search implements Serializable {
 	
 	public String toSting(){
 		
-		StringBuffer sb = new StringBuffer();
+		final StringBuilder sb = new StringBuilder();
 		
 		sb.append("\n");
 		sb.append(this.getClass().getName()).append("\n");
-		sb.append("검색 형태      [ " + type + " ] \n");
-		sb.append("검색 형태 목록 [ " + typeIs + " ] \n");
-		sb.append("검색어         [ " + keyword + " ] \n");
+		sb.append("검색 형태       [ " + type + " ] \n");
+		sb.append("검색 형태 목록  [ " + typeIs + " ] \n");
+		sb.append("검색어          [ " + keyword + " ] \n");
 		
 		return sb.toString();
 	}
