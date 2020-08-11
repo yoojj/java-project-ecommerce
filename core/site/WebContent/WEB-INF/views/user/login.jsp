@@ -22,7 +22,7 @@
 				</li>
 			</ul>
 			
-			<nav class="sub-user-login-btn">
+			<div class="sub-user-login-btn">
 				<span class="find-info">
 					<a href="${path}/user/find-id">아이디 찾기</a>
 					<a href="${path}/user/find-pwd">비밀번호 찾기</a>
@@ -38,7 +38,7 @@
 						아이디 기억하기
 					</label>
 				</span>
-			</nav>
+			</div>
 		</fieldset>
 		</form>
 		
@@ -72,7 +72,7 @@ document.getElementById('userLoginForm').addEventListener('submit', async (e) =>
 	};
 	
 	validate( $data, valid => {
-		
+
 		if(valid != true){
 
 			alert(valid);
@@ -80,10 +80,16 @@ document.getElementById('userLoginForm').addEventListener('submit', async (e) =>
 		} else {
 			
 			fetch('ajax.user.login', $data).then( server => {
-
-				console.log(server)
-				
-				if(server.message === 'ERROR'){
+				if(server.message === 'SUCCESS'){ 
+					
+					if($saveId == true) {
+						cookie.set(window.$constant.cookie.userId, $userId);
+					}	
+					
+					location.href = location.origin + '/' + location.pathname.split('/')[1] + '/main';
+					
+				} else if(server.code == 1){
+					
 					errorPrint(server.result, e.target.getElementsByTagName('li'));
 					
 				} else if(server.code == 21000){
@@ -96,17 +102,11 @@ document.getElementById('userLoginForm').addEventListener('submit', async (e) =>
 	
 					alert(server.message);
 					document.getElementById('userPwd').value = '';
-					
-				} else if(server.message === 'SUCCESS'){ 
-		
-					if($saveId == true) {
-						cookie.set(window.$constant.cookie.userId, $userId);
-					}	
-					
-					location.href = location.origin + '/' + location.pathname.split('/')[1] + '/main'
+
 				} else {
 					
 					alert(server.message);
+					
 				}
 				
 			});
@@ -121,14 +121,12 @@ document.getElementById('userLoginForm').addEventListener('submit', async (e) =>
 
 function errorPrint(e, tag){
 
-	const li = tag;
-	
 	if(e.id != undefined){
 		const userId = document.createElement('div');
 		userId.className = 'error-msg';
 		const error = document.createTextNode(e.id);
 		userId.appendChild(error);
-		li[0].appendChild(userId);
+		tag[0].appendChild(userId);
 	}
 	
 	if(e.pwd != undefined){
@@ -136,7 +134,7 @@ function errorPrint(e, tag){
 		userPwd.className = 'error-msg';
 		const error = document.createTextNode(e.pwd);
 		userPwd.appendChild(error);
-		li[1].appendChild(userPwd);
+		tag[1].appendChild(userPwd);
 	}
 	
 }
