@@ -5,9 +5,11 @@
 <mapper namespace="AdminMapper">
 
 	<resultMap type="admin" id="adminResultMap">
-		<result property="loginDate"   column="login_date" />  
+		<result property="clientIp"    column="client_ip" />  
+		<result property="loginDate"   column="login_date" /> 
 		<result property="regAdmin"    column="reg_admin" />  
 		<result property="regDate"     column="reg_date" />  
+		<result property="regMsg"     column="reg_msg" />  
 		<result property="updateAdmin" column="update_admin" />  
 		<result property="updateDate"  column="update_date" />  
 		<result property="updateMsg"   column="update_msg" />  
@@ -15,7 +17,7 @@
 	
    <insert id="insert">
     INSERT /* ex.ecommerce.admin.module.member.impl.AdminMemberDAOImpl.insert() */
-      INTO member_admin(id, pwd, level, reg_admin, reg_date, reg_msg, state) 
+      INTO admin(id, pwd, level, reg_admin, reg_date, reg_msg, state) 
     VALUES ( #{id}
            , #{pwd}
            , #{level}
@@ -28,34 +30,56 @@
    <select id="selectId" resultType="String">
     SELECT /* ex.ecommerce.admin.module.member.impl.AdminMemberDAOImpl.selectId() */
            id 
-      FROM member_admin
+      FROM admin
      WHERE id=#{id}
    </select>
  	
  	<select id="selectPwd" resultType="String">
     SELECT /* ex.ecommerce.admin.module.member.impl.AdminMemberDAOImpl.selectPwd() */
            pwd
-      FROM member_admin
+      FROM admin
      WHERE id=#{id}
    </select>
 
    <select id="select" resultMap="adminResultMap">
     SELECT /* ex.ecommerce.admin.module.member.impl.AdminMemberDAOImpl.select() */
-           id, level, login_date, reg_admin, reg_date, reg_msg, update_admin, update_date, update_msg, state
-      FROM member_admin
+           id, level, client_ip, login_date, reg_admin, reg_date, reg_msg, update_admin, update_date, update_msg, state
+      FROM admin
      WHERE id=#{id}
    </select>
 
    <select id="selectList" fetchSize="15" resultMap="adminResultMap">
     SELECT /* ex.ecommerce.admin.module.member.impl.AdminMemberDAOImpl.selectList() */
            id, level, login_date, reg_admin, reg_date, reg_msg, update_admin, update_date, update_msg, state
-      FROM member_admin
+      FROM admin
   ORDER BY reg_date DESC
    </select>
 
+   <update id="updatePwd">
+    UPDATE /* ex.ecommerce.admin.module.member.impl.AdminMemberDAOImpl.updatePwd() */
+           admin
+       SET   pwd = #{pwd}
+     WHERE id=#{id}
+   </update>
+   
+   <update id="updateLogin">
+    UPDATE /* ex.ecommerce.admin.module.member.impl.AdminMemberDAOImpl.updateLogin() */
+           admin
+       SET   client_ip   = #{clientIp}
+           , update_date = SYSDATE
+     WHERE id=#{id}
+   </update>
+
+   <update id="updateState">
+    UPDATE /* ex.ecommerce.admin.module.member.impl.AdminMemberDAOImpl.updateState() */
+           admin
+       SET   state = #{state}
+     WHERE id=#{id}
+   </update>
+   	
    <update id="update">
     UPDATE /* ex.ecommerce.admin.module.member.impl.AdminMemberDAOImpl.update() */
-           member_admin
+           admin
        SET   level        = #{level}
            , update_admin = #{updateAdmin}
            , update_date  = SYSDATE
@@ -63,14 +87,11 @@
            , state        = #{state}
      WHERE id=#{id}
    </update>
-
-   <delete id="delete">
+   
+	<delete id="delete">
     DELETE /* ex.ecommerce.admin.module.member.impl.AdminMemberDAOImpl.delete() */
-      FROM member_admin
+      FROM admin
      WHERE id=#{id}
-       AND state=false
    </delete>
-   
-   
    
 </mapper>
